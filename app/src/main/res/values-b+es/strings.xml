@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Calculadora de Matrices</string>
+    <string name="nombre_matriz">Matriz</string>
+</resources>

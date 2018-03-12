@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="determinant">Determinante</string>
+    <string name="inverse">Inversa</string>
+    <string name="analysis">Analisis Basico</string>
+    <string name="back">Volver</string>
+    <string name="autovalvec">Autovalores y Autovectores</string>
+    <string name="autoval">Autovalores</string>
+    <string name="trace">Traza</string>
+    <string name="transposed">Transpuesta</string>
+    <string name="notSquare">La matriz no es cuadrada.</string>
+    <string name="singularMatrix">La matriz es singular.</string>
+    <string name="svd">Descomposicion en Valores Singulares</string>
+    <string name="qr">Descomposicion QR</string>
+    <string name="lu">Descomposicion LU</string>
+    <string name="rank">Rango</string>
+    <string name="help">Ayuda</string>
+    <string name="rate">Calificar</string>
+    <string name="share">Compartir</string>
+    <string name="helpText1">Con la ayuda de esta calculadora puedes encontrar el determinante, rango, y mas.</string>
+    <string name="helpText2">Complete los elementos de la matriz y haga click en el boton OK.</string>
+    <string name="helpText3">Teoria necesaria:</string>
+    <string name="link1"><a href="https://es.wikipedia.org/wiki/Matriz_(matem%C3%A1ticas))" target="_top">Matrices en Wikipedia</a></string>
+    <string name="link2"><a href="https://es.wikipedia.org/wiki/Factorizaci%C3%B3n_de_matrices" target="_top">Descomposiciones de Matrices</a></string>
+    <string name="helpText4">Si se ingresa un valor invalido en alguna de las entradas (Ej. 1//3, 76-/4), esa entrada sera procesada con el valor por defecto 0. Preste atencion.</string>
+    <string name="sharevia">Compartir via</string>
+    <string name="linkShare"><a href="https://play.google.com/store/apps/details?id=com.eriochrome.matrixcalculator"> Calculadora de Matrices </a></string>
+    <string name="eigenComplex">Esta aplicacion no permite autovalores complejos.</string>
+    <string name="helpText5">Considere que algunos resultados seran expresados como una fraccion que aproxima cercanamente al verdadero valor (Ej. 153/265 es aproximadamente 1/3^(1/2)). Asegurese de comparar dichos valores con los que se esperan.</string>
+    <string name="autovec">Autovectores</string>
+</resources>

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Matrix Calculator</string>
+    <string name="nombre_matriz">Matrix</string>
+    <string name="determinant">Determinant</string>
+    <string name="inverse">Inverse</string>
+    <string name="analysis">Basic Analysis</string>
+    <string name="back">Back</string>
+    <string name="autovalvec">Eigenvalues and Eigenvectors</string>
+    <string name="autoval">Eigenvalues</string>
+    <string name="trace">Trace</string>
+    <string name="transposed">Transposed</string>
+    <string name="notSquare">The matrix is not square.</string>
+    <string name="singularMatrix">The matrix is singular.</string>
+    <string name="svd">Singular-Value Descomposition</string>
+    <string name="qr">QR Descomposition</string>
+    <string name="lu">LU Descomposition</string>
+    <string name="rank">Rank</string>
+    <string name="help">Help</string>
+    <string name="share">Share</string>
+    <string name="rate">Rate</string>
+    <string name="helpText1">With help of this calculator you can find the matrix determinant, rank, and more.</string>
+    <string name="helpText2">Just type matrix elements and click the OK button.</string>
+    <string name="helpText3">Necessary theory:</string>
+    <string name="link1"><a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" target="_top">Matrix on Wikipedia</a></string>
+    <string name="link2"><a href="https://en.wikipedia.org/wiki/Matrix_decomposition" target="_top">Matrix Descompositions</a></string>
+    <string name="helpText4">If you enter an invalid value in any of the entries (E.g. 1//3, 76-/4) that entry will be processed with the default value of 0. Pay attention.</string>
+    <string name="sharevia">Share Via</string>
+    <string name="linkShare"><a href="https://play.google.com/store/apps/details?id=com.eriochrome.matrixcalculator"> Matrix Calculator </a></string>
+    <string name="eigenComplex">This app does not support complex eigenvalues.</string>
+    <string name="helpText5">Consider that some results will be expressed as a fraction which closely approximates the true result (Eg. 153/265 closely aproximates 1/3^(1/2)). Always compare such values to the ones expected.</string>
+    <string name="autovec">Eigenvectors</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuItemHelp"
+        android:layout_width="wrap_content"
+        android:title="@string/help" />
+    <item
+        android:id="@+id/lol"
+        android:title="adas" />
+    <item
+        android:id="@+id/menuItemRate"
+        android:title="@string/rate" />
+</menu>
