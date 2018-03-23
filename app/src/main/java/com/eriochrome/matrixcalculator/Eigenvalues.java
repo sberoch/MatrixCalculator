@@ -26,14 +26,15 @@ public class Eigenvalues extends AppCompatActivity
         double[][] mtx = (double[][]) b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
 
-        int dim = matrix.getColumnDimension();
-        TextView[] eigenvalues = new TextView[dim];
+        int col = matrix.getColumnDimension();
+        int row = matrix.getRowDimension();
+        TextView[] eigenvalues = new TextView[col];
         eigenvalues[0] = findViewById(R.id.lambda1);
         eigenvalues[1] = findViewById(R.id.lambda2);
         eigenvalues[2] = findViewById(R.id.lambda3);
 
 
-        TextView[][] vectors = new TextView[dim][dim];
+        TextView[][] vectors = new TextView[row][col];
         vectors[0][0] = findViewById(R.id.p11);
         vectors[0][1] = findViewById(R.id.p12);
         vectors[0][2] = findViewById(R.id.p13);
@@ -54,23 +55,23 @@ public class Eigenvalues extends AppCompatActivity
             errorHandler.setText(getResources().getString(R.string.eigenComplex));
         } else
             {
-            for (int i = 0; i < dim; i++)
+            for (int i = 0; i < col; i++)
             {
                 Fraction eigenvalue = new Fraction(eigenDecomposition.getRealEigenvalue(i));
                 eigenvalues[i].setText(eigenvalue.toString());
             }
-            for (int i = 0; i < dim; i++)
+            for (int i = 0; i < col; i++)
             {
                 try
                 {
                     RealVector evec = eigenDecomposition.getEigenvector(i);
                     Double scale = 0.0;
-                    for (int k = 0; k < dim; k++) {
+                    for (int k = 0; k < col; k++) {
                         if (evec.getEntry(k) != 0) {
                             scale = 1 / evec.getEntry(k);
                         }
                     }
-                    for (int j = 0; j < dim; j++)
+                    for (int j = 0; j < col; j++)
                     {
                         Fraction value = new Fraction(evec.getEntry(j) * scale);
                         vectors[i][j].setText(value.toString());
@@ -78,7 +79,7 @@ public class Eigenvalues extends AppCompatActivity
                 }
                 catch (Exception e)
                 {
-                    for (int j = 0; j < dim; j++) {
+                    for (int j = 0; j < col; j++) {
                         vectors[i][j].setVisibility(View.INVISIBLE);
                     }
                 }

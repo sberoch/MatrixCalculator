@@ -23,8 +23,11 @@ public class Inverse extends AppCompatActivity {
 
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
+        int col = matrix.getColumnDimension();
+        int row = matrix.getRowDimension();
 
-        TextView[] vec = new TextView[9];
+
+        TextView[] vec = new TextView[row*col];
         vec[0] = findViewById(R.id.i11);
         vec[1] = findViewById(R.id.i12);
         vec[2] = findViewById(R.id.i13);

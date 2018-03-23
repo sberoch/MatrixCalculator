@@ -29,6 +29,8 @@ public class MatrixAnalysis extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
+        int col = matrix.getColumnDimension();
+        int row = matrix.getRowDimension();
 
 
         //Rango
@@ -52,7 +54,7 @@ public class MatrixAnalysis extends AppCompatActivity {
 
         //Transposed --- (3x3)
         RealMatrix transposedMatrix = matrix.transpose();
-        TextView[] vec = new TextView[9];
+        TextView[] vec = new TextView[row*col];
         vec[0] = findViewById(R.id.t11);
         vec[1] = findViewById(R.id.t12);
         vec[2] = findViewById(R.id.t13);

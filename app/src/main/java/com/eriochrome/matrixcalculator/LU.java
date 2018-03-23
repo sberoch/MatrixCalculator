@@ -22,8 +22,10 @@ public class LU extends AppCompatActivity {
 
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
+        int col = matrix.getColumnDimension();
+        int row = matrix.getRowDimension();
 
-        TextView[] vecL = new TextView[9];
+        TextView[] vecL = new TextView[row*col];
         vecL[0] = findViewById(R.id.l11);
         vecL[1] = findViewById(R.id.l12);
         vecL[2] = findViewById(R.id.l13);
@@ -34,7 +36,7 @@ public class LU extends AppCompatActivity {
         vecL[7] = findViewById(R.id.l32);
         vecL[8] = findViewById(R.id.l33);
 
-        TextView[] vecU = new TextView[9];
+        TextView[] vecU = new TextView[row*col];
         vecU[0] = findViewById(R.id.ulu11);
         vecU[1] = findViewById(R.id.ulu12);
         vecU[2] = findViewById(R.id.ulu13);

@@ -28,7 +28,7 @@ public class DVS extends AppCompatActivity {
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
         int dim  = matrix.getColumnDimension();
 
-        TextView[] vecU = new TextView[9];
+        TextView[] vecU = new TextView[dim*dim];
         vecU[0] = findViewById(R.id.u11);
         vecU[1] = findViewById(R.id.u12);
         vecU[2] = findViewById(R.id.u13);
