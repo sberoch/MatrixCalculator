@@ -8,22 +8,23 @@
     tools:context="com.eriochrome.matrixcalculator.MatrixFragment">
 
     <RelativeLayout
-        android:id="@+id/layout"
+        android:id="@+id/Container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/corchete1"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_centerHorizontal="false"
-            android:layout_toLeftOf="@+id/entries"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/rLayout"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="corchete1"
@@ -31,215 +32,37 @@
             android:scaleType="fitEnd"
             android:src="@drawable/corchete1" />
 
+        <RelativeLayout
+            android:id="@+id/rLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/corchete2"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_centerInParent="true"
-            android:layout_toRightOf="@+id/entries"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/rLayout"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="corchete2"
             android:scaleType="fitStart"
             android:src="@drawable/corchete2" />
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/entries"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:layout_weight="1"
-            android:minHeight="190dp">
-
-            <EditText
-                android:id="@+id/editText11"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editText12"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/editText11"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editText13"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/editText12"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editText21"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText11" />
-
-            <EditText
-                android:id="@+id/editText22"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/editText21"
-                app:layout_constraintTop_toBottomOf="@+id/editText12" />
-
-            <EditText
-                android:id="@+id/editText23"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/editText22"
-                app:layout_constraintTop_toBottomOf="@+id/editText13" />
-
-            <EditText
-                android:id="@+id/editText31"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText21" />
-
-            <EditText
-                android:id="@+id/editText32"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/editText31"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
-
-            <EditText
-                android:id="@+id/editText33"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textColorHighlight="@android:color/black"
-                android:textColorHint="#737373"
-                android:textColorLink="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/editText32"
-                app:layout_constraintTop_toBottomOf="@+id/editText23" />
-
-        </android.support.constraint.ConstraintLayout>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

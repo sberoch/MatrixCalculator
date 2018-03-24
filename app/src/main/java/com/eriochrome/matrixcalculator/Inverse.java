@@ -68,7 +68,6 @@ public class Inverse extends AppCompatActivity {
     public void onClick(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
         mp.start();
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        this.finish();
     }
 }

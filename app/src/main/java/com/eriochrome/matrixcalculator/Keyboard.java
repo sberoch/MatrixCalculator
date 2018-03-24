@@ -3,6 +3,7 @@ package com.eriochrome.matrixcalculator;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.LayoutInflater;
@@ -10,11 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+
+import junit.framework.Test;
+
 
 public class Keyboard extends Fragment{
 
     Button button0, button1, button2, button3, button4, button5, button6,
-            button7, button8, button9, button_minus,
+            button7, button8, button9, button_minus, lessRows, moreRows, lessCols, moreCols,
             button_div, button_delete, button_dot, button_ok;
 
     ImageButton button_erase;
@@ -26,12 +31,11 @@ public class Keyboard extends Fragment{
             final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.button_touch);
             mp.start();
 
-            EditText focusedEditText;
-            if ((EditText)getActivity().getCurrentFocus() != null) {
-                 focusedEditText = (EditText)getActivity().getCurrentFocus();
-            } else {
-                 focusedEditText = getActivity().findViewById(R.id.editText11);
-            }
+            EditText focusedEditText = (EditText)getActivity().getCurrentFocus();
+
+            FragmentManager fm = getFragmentManager();
+            MatrixFragment mtffgm = (MatrixFragment)fm.findFragmentById(R.id.matrix_fragment);
+            RelativeLayout rLayout = (RelativeLayout)getActivity().findViewById(R.id.rLayout);
 
             switch (view.getId()) {
                 case R.id.button_ok:
@@ -106,8 +110,37 @@ public class Keyboard extends Fragment{
                     }
                     break;
 
+                case R.id.lessCols:
+                    if (mtffgm.getCols() > 2) {
+                        rLayout.removeAllViews();
+                        mtffgm.setCols(mtffgm.getCols() - 1);
+                        mtffgm.setEntries(mtffgm.addEditTextDynamically(rLayout, mtffgm.getCols(), mtffgm.getRows()));
+                    }
+                    break;
 
+                case R.id.moreCols:
+                    if(mtffgm.getCols() < 4) {
+                        rLayout.removeAllViews();
+                        mtffgm.setCols(mtffgm.getCols() + 1);
+                        mtffgm.setEntries(mtffgm.addEditTextDynamically(rLayout, mtffgm.getCols(), mtffgm.getRows()));
+                    }
+                    break;
 
+                case R.id.lessRows:
+                    if (mtffgm.getRows() > 2) {
+                        rLayout.removeAllViews();
+                        mtffgm.setRows(mtffgm.getRows() - 1);
+                        mtffgm.setEntries(mtffgm.addEditTextDynamically(rLayout, mtffgm.getCols(), mtffgm.getRows()));
+                    }
+                    break;
+
+                case R.id.moreRows:
+                    if (mtffgm.getRows() < 4) {
+                        rLayout.removeAllViews();
+                        mtffgm.setRows(mtffgm.getRows() + 1);
+                        mtffgm.setEntries(mtffgm.addEditTextDynamically(rLayout, mtffgm.getCols(), mtffgm.getRows()));
+                    }
+                    break;
             }
         }
     };
@@ -166,6 +199,18 @@ public class Keyboard extends Fragment{
 
         button_erase = rootView.findViewById(R.id.button_erase);
         button_erase.setOnClickListener(onClickListener);
+
+        lessRows = rootView.findViewById(R.id.lessRows);
+        lessRows.setOnClickListener(onClickListener);
+
+        moreRows = rootView.findViewById(R.id.moreRows);
+        moreRows.setOnClickListener(onClickListener);
+
+        lessCols = rootView.findViewById(R.id.lessCols);
+        lessCols.setOnClickListener(onClickListener);
+
+        moreCols = rootView.findViewById(R.id.moreCols);
+        moreCols.setOnClickListener(onClickListener);
 
         return rootView;
 

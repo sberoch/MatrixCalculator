@@ -11,8 +11,10 @@ import android.widget.TextView;
 import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.EigenDecomposition;
+import org.apache.commons.math3.linear.NonSquareMatrixException;
 import org.apache.commons.math3.linear.RRQRDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.SingularValueDecomposition;
 
 import java.text.DecimalFormat;
 
@@ -34,11 +36,11 @@ public class MatrixAnalysis extends AppCompatActivity {
 
 
         //Rango
-        EigenDecomposition auxMat = new EigenDecomposition(matrix);
-        double[] eigenvalues = auxMat.getRealEigenvalues();
+        SingularValueDecomposition auxMat = new SingularValueDecomposition(matrix);
+        double[] singularValues = auxMat.getSingularValues();
         int rank = 0;
-        for (int i = 0; i<eigenvalues.length; i++) {
-            if (eigenvalues[i] != 0) {
+        for (int i = 0; i<singularValues.length; i++) {
+            if (singularValues[i] != 0) {
                 rank++;
             }
         }
@@ -47,13 +49,19 @@ public class MatrixAnalysis extends AppCompatActivity {
 
 
         //Trace
-        double trace = matrix.getTrace();
-        TextView trace_textView = findViewById(R.id.trace_textView);
-        Fraction traceFrac = new Fraction(trace);
-        trace_textView.setText(traceFrac.toString());
+        try {
+            double trace = matrix.getTrace();
+            TextView trace_textView = findViewById(R.id.trace_textView);
+            Fraction traceFrac = new Fraction(trace);
+            trace_textView.setText(traceFrac.toString());
+
+        } catch (NonSquareMatrixException e) {
+            TextView trace_textView = findViewById(R.id.trace_textView);
+            trace_textView.setText(getResources().getString(R.string.notSquare));
+        }
 
         //Transposed --- (3x3)
-        RealMatrix transposedMatrix = matrix.transpose();
+        /*RealMatrix transposedMatrix = matrix.transpose();
         TextView[] vec = new TextView[row*col];
         vec[0] = findViewById(R.id.t11);
         vec[1] = findViewById(R.id.t12);
@@ -64,13 +72,20 @@ public class MatrixAnalysis extends AppCompatActivity {
         vec[6] = findViewById(R.id.t31);
         vec[7] = findViewById(R.id.t32);
         vec[8] = findViewById(R.id.t33);
-        MatrixOperations.matrixRepresentation(vec, transposedMatrix);
+        MatrixOperations.matrixRepresentation(vec, transposedMatrix);*/
 
         //Determinant
-        double det = MatrixOperations.matrixDeterminant(matrix.getData());
-        TextView det_textView = findViewById(R.id.det_textView);
-        Fraction detFrac = new Fraction(det);
-        det_textView.setText(detFrac.toString());
+        try {
+            boolean isSquare = matrix.isSquare();
+            double det = MatrixOperations.matrixDeterminant(matrix.getData(), isSquare);
+            TextView det_textView = findViewById(R.id.det_textView);
+            Fraction detFrac = new Fraction(det);
+            det_textView.setText(detFrac.toString());
+
+        } catch (Exception e) {
+            TextView det_textView = findViewById(R.id.det_textView);
+            det_textView.setText(getResources().getString(R.string.notSquare));
+        }
 
 
 
@@ -81,7 +96,6 @@ public class MatrixAnalysis extends AppCompatActivity {
     public void onClick(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
         mp.start();
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        this.finish();
     }
 }

@@ -25,7 +25,7 @@
             android:id="@+id/upper_navigation"
             android:name="com.eriochrome.matrixcalculator.UpperNavigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="29dp"
             tools:layout="@layout/upper_navigation">
 
         </fragment>

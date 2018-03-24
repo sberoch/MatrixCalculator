@@ -91,8 +91,7 @@ public class Eigenvalues extends AppCompatActivity
     {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
         mp.start();
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        this.finish();
     }
 
 }

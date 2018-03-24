@@ -29,4 +29,6 @@
     <string name="eigenComplex">This app does not support complex eigenvalues.</string>
     <string name="helpText5">Consider that some results will be expressed as a fraction which closely approximates the true result (Eg. 153/265 closely aproximates 1/3^(1/2)). Always compare such values to the ones expected.</string>
     <string name="autovec">Eigenvectors</string>
+    <string name="rows">Rows</string>
+    <string name="cols">Columns</string>
 </resources>

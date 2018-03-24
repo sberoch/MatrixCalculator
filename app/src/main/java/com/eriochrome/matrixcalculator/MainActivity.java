@@ -68,11 +68,6 @@ public class MainActivity extends AppCompatActivity {
                             Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
                 }
                 return true;
-            case R.id.lol:
-                mp.start();
-                Intent i2 = new Intent(this, TestingMatrix.class);
-                startActivity(i2);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
