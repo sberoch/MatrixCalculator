@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -14,6 +15,8 @@ import org.apache.commons.math3.linear.SingularMatrixException;
 
 public class LU extends AppCompatActivity {
 
+    RelativeLayout lRelativeLayout;
+    RelativeLayout uRelativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,30 +25,9 @@ public class LU extends AppCompatActivity {
 
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
-        int col = matrix.getColumnDimension();
-        int row = matrix.getRowDimension();
+        lRelativeLayout = findViewById(R.id.lRelativeLayout);
+        uRelativeLayout = findViewById(R.id.uRelativeLayout);
 
-        TextView[] vecL = new TextView[row*col];
-        vecL[0] = findViewById(R.id.l11);
-        vecL[1] = findViewById(R.id.l12);
-        vecL[2] = findViewById(R.id.l13);
-        vecL[3] = findViewById(R.id.l21);
-        vecL[4] = findViewById(R.id.l22);
-        vecL[5] = findViewById(R.id.l23);
-        vecL[6] = findViewById(R.id.l31);
-        vecL[7] = findViewById(R.id.l32);
-        vecL[8] = findViewById(R.id.l33);
-
-        TextView[] vecU = new TextView[row*col];
-        vecU[0] = findViewById(R.id.ulu11);
-        vecU[1] = findViewById(R.id.ulu12);
-        vecU[2] = findViewById(R.id.ulu13);
-        vecU[3] = findViewById(R.id.ulu21);
-        vecU[4] = findViewById(R.id.ulu22);
-        vecU[5] = findViewById(R.id.ulu23);
-        vecU[6] = findViewById(R.id.ulu31);
-        vecU[7] = findViewById(R.id.ulu32);
-        vecU[8] = findViewById(R.id.ulu33);
 
         TextView errorHandler = findViewById(R.id.errorTextViewLU);
         TextView corchete3 = findViewById(R.id.corchete3);
@@ -58,6 +40,8 @@ public class LU extends AppCompatActivity {
         try {
             if (!matrix.isSquare()){
                 errorHandler.setText(getResources().getString(R.string.notSquare));
+                u.setVisibility(View.INVISIBLE);
+                l.setVisibility(View.INVISIBLE);
             } else {
                 LUDecomposition luDecomposition = new LUDecomposition(matrix);
                 luDecomposition.getSolver().getInverse(); //Para triggerear la exception
@@ -69,8 +53,9 @@ public class LU extends AppCompatActivity {
                 corchete4.setVisibility(View.VISIBLE);
                 corchete5.setVisibility(View.VISIBLE);
                 corchete6.setVisibility(View.VISIBLE);
-                MatrixOperations.matrixRepresentation(vecL, L);
-                MatrixOperations.matrixRepresentation(vecU, U);
+                MainActivity main = new MainActivity();
+                main.createMatrixDinamically(L, lRelativeLayout, this, 35,15,8,10);
+                main.createMatrixDinamically(U, uRelativeLayout, this, 35,15,8,10);
             }
         } catch (SingularMatrixException e) {
             errorHandler.setText(getResources().getString(R.string.singularMatrix));

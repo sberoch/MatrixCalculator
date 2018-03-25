@@ -1,10 +1,17 @@
 package com.eriochrome.matrixcalculator;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.linear.NonSquareMatrixException;
 import org.apache.commons.math3.linear.RealMatrix;
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
@@ -51,6 +58,8 @@ public class MatrixOperations {
 
         return (result);
     }
+
+
 
 
     // (3x3) - Vector con Textviews, Matriz ya operada

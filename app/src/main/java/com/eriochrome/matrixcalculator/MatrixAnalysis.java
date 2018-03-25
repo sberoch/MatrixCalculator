@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -20,8 +21,7 @@ import java.text.DecimalFormat;
 
 public class MatrixAnalysis extends AppCompatActivity {
 
-
-
+    RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +31,7 @@ public class MatrixAnalysis extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
-        int col = matrix.getColumnDimension();
-        int row = matrix.getRowDimension();
+        relativeLayout = findViewById(R.id.transpRelativeLayout);
 
 
         //Rango
@@ -60,19 +59,11 @@ public class MatrixAnalysis extends AppCompatActivity {
             trace_textView.setText(getResources().getString(R.string.notSquare));
         }
 
-        //Transposed --- (3x3)
-        /*RealMatrix transposedMatrix = matrix.transpose();
-        TextView[] vec = new TextView[row*col];
-        vec[0] = findViewById(R.id.t11);
-        vec[1] = findViewById(R.id.t12);
-        vec[2] = findViewById(R.id.t13);
-        vec[3] = findViewById(R.id.t21);
-        vec[4] = findViewById(R.id.t22);
-        vec[5] = findViewById(R.id.t23);
-        vec[6] = findViewById(R.id.t31);
-        vec[7] = findViewById(R.id.t32);
-        vec[8] = findViewById(R.id.t33);
-        MatrixOperations.matrixRepresentation(vec, transposedMatrix);*/
+        //Transposed
+        RealMatrix transposedMatrix = matrix.transpose();
+        MainActivity main = new MainActivity();
+        main.createMatrixDinamically(transposedMatrix, relativeLayout, this, 45, 40, 14,14);
+
 
         //Determinant
         try {

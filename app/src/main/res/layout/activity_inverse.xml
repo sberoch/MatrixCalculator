@@ -49,139 +49,49 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/corchete1"
-            android:layout_width="37dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
             android:layout_weight="1"
-            android:contentDescription="corchete1"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
             android:scaleType="fitEnd"
             android:visibility="invisible"
             app:srcCompat="@drawable/corchete1" />
 
-        <LinearLayout
-            android:layout_width="300dp"
+        <Space
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1" />
 
-            <LinearLayout
-                android:id="@+id/Inv1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/invRelativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
 
-                <TextView
-                    android:id="@+id/i11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/i12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/i13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Inv2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/i21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/i22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/i23"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Inv3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/i31"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/i32"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/i33"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/corchete2"
-            android:layout_width="37dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
             android:layout_weight="1"
-            android:contentDescription="corchete2"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
             android:scaleType="fitStart"
             android:visibility="invisible"
             app:srcCompat="@drawable/corchete2" />

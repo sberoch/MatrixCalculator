@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -15,6 +16,7 @@ import org.apache.commons.math3.linear.SingularMatrixException;
 
 public class Inverse extends AppCompatActivity {
 
+    RelativeLayout invRelativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,20 +25,7 @@ public class Inverse extends AppCompatActivity {
 
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
-        int col = matrix.getColumnDimension();
-        int row = matrix.getRowDimension();
-
-
-        TextView[] vec = new TextView[row*col];
-        vec[0] = findViewById(R.id.i11);
-        vec[1] = findViewById(R.id.i12);
-        vec[2] = findViewById(R.id.i13);
-        vec[3] = findViewById(R.id.i21);
-        vec[4] = findViewById(R.id.i22);
-        vec[5] = findViewById(R.id.i23);
-        vec[6] = findViewById(R.id.i31);
-        vec[7] = findViewById(R.id.i32);
-        vec[8] = findViewById(R.id.i33);
+        invRelativeLayout = (RelativeLayout)findViewById(R.id.invRelativeLayout);
 
         TextView errorHandler = findViewById(R.id.errorTextView);
         ImageView corchete1 = findViewById(R.id.corchete1);
@@ -51,19 +40,18 @@ public class Inverse extends AppCompatActivity {
                 RealMatrix inverseMatrix = new LUDecomposition(matrix).getSolver().getInverse();
                 corchete1.setVisibility(View.VISIBLE);
                 corchete2.setVisibility(View.VISIBLE);
-                MatrixOperations.matrixRepresentation(vec, inverseMatrix);
+                MainActivity main = new MainActivity();
+                main.createMatrixDinamically(inverseMatrix, invRelativeLayout, this, 45,40,14, 14);
             }
         } catch (SingularMatrixException e) {
             errorHandler.setText(getResources().getString(R.string.singularMatrix));
         }
 
-
-
-
-
-
-
     }
+
+
+
+
 
     public void onClick(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
