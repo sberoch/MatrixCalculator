@@ -81,6 +81,7 @@ public class DVS extends AppCompatActivity {
         this.finish();
     }
 
+    //TODO: hacer para mxm
     private RealMatrix denormalize(RealMatrix M)
     {
         for (int i = 0; i < 3; i++)

@@ -59,24 +59,7 @@ public class MatrixOperations {
         return (result);
     }
 
-
-
-
-    // (3x3) - Vector con Textviews, Matriz ya operada
-    public static void matrixRepresentation(TextView[] vec, RealMatrix mat) {
-        int j = 0, k = 0;
-        for (int i = 0; i < 9; i++) {
-            double entry = mat.getEntry(j,k);
-            Fraction fractionEntry = new Fraction(entry);
-            vec[i].setText(fractionEntry.toString());
-            k++;
-            if (k == 3) {
-                k = 0;
-                j++;
-            }
-        }
-    }
-
+    //TODO: hacer para nxm
     public static void matrixRepresentationAndNormalizationCol(TextView[] vec, RealMatrix mat) {
         int j = 0, k = 0;
         for (int i = 0; i < 9; i++) {
@@ -98,6 +81,7 @@ public class MatrixOperations {
         }
     }
 
+    //TODO: hacer para nxm
     public static void matrixRepresentationAndNormalizationFil(TextView[] vec, RealMatrix mat) {
         int j = 0, k = 0;
         for (int i = 0; i < 9; i++) {
@@ -120,6 +104,7 @@ public class MatrixOperations {
         }
     }
 
+    //TODO: hacer para MXM
     public static void matrixRepresentationSigma(TextView[] vec, RealMatrix mat) {
         DecimalFormat df = new DecimalFormat("###.##");
         int j = 0, k = 0;

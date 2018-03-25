@@ -30,4 +30,5 @@
     <string name="autovec">Autovectores</string>
     <string name="rows">Filas</string>
     <string name="cols">Columnas</string>
+    <string name="noDiago">La matriz no es diagonalizable.</string>
 </resources>
