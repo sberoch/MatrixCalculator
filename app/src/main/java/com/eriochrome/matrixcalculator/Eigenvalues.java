@@ -71,7 +71,7 @@ public class Eigenvalues extends AppCompatActivity
 
 
 
-    private void createEigenvaluesVector(RealMatrix matrix, RelativeLayout relativeLayout) {
+    public void createEigenvaluesVector(RealMatrix matrix, RelativeLayout relativeLayout) {
         TextView[] textViews = new TextView[matrix.getColumnDimension()];
 
         int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 45, getResources().getDisplayMetrics());
@@ -104,7 +104,7 @@ public class Eigenvalues extends AppCompatActivity
     }
 
 
-    private void createEigenvectorsDisplay(EigenDecomposition eigenDecomposition, RelativeLayout relativeLayout) {
+    public void createEigenvectorsDisplay(EigenDecomposition eigenDecomposition, RelativeLayout relativeLayout) {
         int dim = eigenDecomposition.getD().getColumnDimension();
 
         int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 40, getResources().getDisplayMetrics());

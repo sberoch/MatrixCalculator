@@ -32,4 +32,7 @@
     <string name="rows">Rows</string>
     <string name="cols">Columns</string>
     <string name="noDiago">The matrix is non-diagonalizable.</string>
+    <string name="singValues">Singular Values</string>
+    <string name="Ur">U (reduced)</string>
+    <string name="Vtr">Vt (reduced)</string>
 </resources>

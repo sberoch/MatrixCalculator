@@ -31,4 +31,7 @@
     <string name="rows">Filas</string>
     <string name="cols">Columnas</string>
     <string name="noDiago">La matriz no es diagonalizable.</string>
+    <string name="singValues">Valores Singulares</string>
+    <string name="Ur">U (reducida)</string>
+    <string name="Vtr">Vt (reducida)</string>
 </resources>

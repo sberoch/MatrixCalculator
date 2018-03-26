@@ -2,9 +2,12 @@ package com.eriochrome.matrixcalculator;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.commons.math3.analysis.function.Sin;
@@ -16,7 +19,15 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.linear.SingularValueDecomposition;
 
+import java.text.DecimalFormat;
+
 public class DVS extends AppCompatActivity {
+
+    RelativeLayout singularValuesRL;
+    RelativeLayout uMatrixRL;
+    RelativeLayout VtMatrixRL;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,40 +37,9 @@ public class DVS extends AppCompatActivity {
 
         double[][] mtx = (double[][])b.getSerializable("Matrix");
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
-        int dim  = matrix.getColumnDimension();
-
-        TextView[] vecU = new TextView[dim*dim];
-        vecU[0] = findViewById(R.id.u11);
-        vecU[1] = findViewById(R.id.u12);
-        vecU[2] = findViewById(R.id.u13);
-        vecU[3] = findViewById(R.id.u21);
-        vecU[4] = findViewById(R.id.u22);
-        vecU[5] = findViewById(R.id.u23);
-        vecU[6] = findViewById(R.id.u31);
-        vecU[7] = findViewById(R.id.u32);
-        vecU[8] = findViewById(R.id.u33);
-
-        TextView[] vecSigma = new TextView[dim*dim];
-        vecSigma[0] = findViewById(R.id.s11);
-        vecSigma[1] = findViewById(R.id.s12);
-        vecSigma[2] = findViewById(R.id.s13);
-        vecSigma[3] = findViewById(R.id.s21);
-        vecSigma[4] = findViewById(R.id.s22);
-        vecSigma[5] = findViewById(R.id.s23);
-        vecSigma[6] = findViewById(R.id.s31);
-        vecSigma[7] = findViewById(R.id.s32);
-        vecSigma[8] = findViewById(R.id.s33);
-
-        TextView[] vecVt = new TextView[dim*dim];
-        vecVt[0] = findViewById(R.id.vt11);
-        vecVt[1] = findViewById(R.id.vt12);
-        vecVt[2] = findViewById(R.id.vt13);
-        vecVt[3] = findViewById(R.id.vt21);
-        vecVt[4] = findViewById(R.id.vt22);
-        vecVt[5] = findViewById(R.id.vt23);
-        vecVt[6] = findViewById(R.id.vt31);
-        vecVt[7] = findViewById(R.id.vt32);
-        vecVt[8] = findViewById(R.id.vt33);
+        singularValuesRL = findViewById(R.id.singularValuesRL);
+        uMatrixRL = findViewById(R.id.uMatrixRL);
+        VtMatrixRL = findViewById(R.id.VtMatrixRL);
 
         SingularValueDecomposition svd = new SingularValueDecomposition(matrix);
         RealMatrix U = svd.getU();
@@ -67,10 +47,12 @@ public class DVS extends AppCompatActivity {
         RealMatrix V = svd.getV();
         U = denormalize(U);
         V = denormalize(V);
+        U = U.transpose();
         RealMatrix Vt = V.transpose();
-        MatrixOperations.matrixRepresentationAndNormalizationCol(vecU, U);
-        MatrixOperations.matrixRepresentationSigma(vecSigma, Sigma);
-        MatrixOperations.matrixRepresentationAndNormalizationFil(vecVt, Vt);
+
+        createValuesVector(Sigma, singularValuesRL);
+        createVectorsDisplay(U, uMatrixRL);
+        createVectorsDisplay(Vt, VtMatrixRL);
     }
 
 
@@ -81,14 +63,13 @@ public class DVS extends AppCompatActivity {
         this.finish();
     }
 
-    //TODO: hacer para mxm
     private RealMatrix denormalize(RealMatrix M)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < M.getColumnDimension(); i++)
         {
             RealVector vec = M.getColumnVector(i);
             double scale = 1.0;
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < M.getRowDimension(); j++)
             {
                 if (vec.getEntry(j) != 0)
                 {
@@ -99,5 +80,105 @@ public class DVS extends AppCompatActivity {
             M.setColumnVector(i, vec);
         }
         return M;
+    }
+
+
+    public void createValuesVector(RealMatrix matrix, RelativeLayout relativeLayout) {
+        TextView[] textViews = new TextView[matrix.getColumnDimension()];
+        DecimalFormat df = new DecimalFormat("###.##");
+
+        int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 80, getResources().getDisplayMetrics());
+        int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getResources().getDisplayMetrics());
+        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30, getResources().getDisplayMetrics());
+
+        for (int i = 0; i < matrix.getColumnDimension(); i++) {
+            TextView textView = new TextView(this);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(widthTextView , heightTextView);
+            textView.setLayoutParams(params);
+            textView.setTextSize(14);
+            textView.setId(i+1); //Cualquier cosa
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            }
+            double entry = matrix.getEntry(i,i);
+
+            double tolerance = 1E-4;
+            if (Math.abs(Math.floor(entry)- entry) < tolerance)
+            {
+                Fraction fractionEntry = new Fraction(entry);
+                textView.setText(fractionEntry.toString());
+            }
+            else
+            {
+                Double entrySquared = entry*entry;
+                String singularValue = "(" + df.format(entrySquared) + ")^(1/2)";
+                textView.setText(singularValue);
+            }
+
+            relativeLayout.addView(textView);
+            textViews[i] = textView;
+
+            if (i > 0) {
+                params.addRule(RelativeLayout.RIGHT_OF, textViews[i-1].getId());
+                params.setMargins(margin, 0, 0, 0);
+            }
+        }
+
+
+    }
+
+
+
+    public void createVectorsDisplay(RealMatrix matrix, RelativeLayout relativeLayout) {
+        int col = matrix.getColumnDimension();
+        int row = matrix.getRowDimension();
+        TextView[][] entries = new TextView[row][col];
+
+        int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 80, getResources().getDisplayMetrics());
+        int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getResources().getDisplayMetrics());
+        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics());
+
+        for (int i = 0; i < row; i++)
+        {
+            double norm = matrix.getRowVector(i).getNorm();
+            for (int j = 0; j < col; j++)
+            {
+
+                TextView textView = new TextView(this);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(widthTextView , heightTextView);
+                textView.setLayoutParams(params);
+                textView.setTextSize(14);
+                textView.setId(10*(i+1) + j+1); //Cualquier cosa
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                }
+                entries[i][j] = textView;
+                relativeLayout.addView(textView);
+                double entry = matrix.getEntry(i,j);
+                Fraction fractionEntry = new Fraction(entry);
+                Fraction fractionSquaredNorm = new Fraction(norm*norm);
+                if (entry == 0 || (entry == 1 && norm == 1)) {
+                    textView.setText(fractionEntry.toString());
+                }
+                else
+                {
+                    textView.setText(fractionEntry.toString() + "/(" + fractionSquaredNorm.toString() + ")^(1/2)" );
+                }
+
+
+
+                if (j > 0) {
+                    params.addRule(RelativeLayout.BELOW, entries[i][j - 1].getId());
+                    params.setMargins(0, margin, 0, 0);
+                }
+                if (i > 0) {
+                    params.addRule(RelativeLayout.RIGHT_OF, entries[i-1][0].getId());
+                    params.setMargins(margin, 0, 0,0);
+                }
+                if (j > 0 && i > 0) {
+                    params.setMargins(margin, margin, 0,0);
+                }
+            }
+        }
     }
 }
