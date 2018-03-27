@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import org.apache.commons.math3.analysis.function.Sin;
 import org.apache.commons.math3.fraction.Fraction;
+import org.apache.commons.math3.fraction.FractionConversionException;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.DiagonalMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -26,7 +27,6 @@ public class DVS extends AppCompatActivity {
     RelativeLayout singularValuesRL;
     RelativeLayout uMatrixRL;
     RelativeLayout VtMatrixRL;
-
 
 
     @Override
@@ -105,7 +105,7 @@ public class DVS extends AppCompatActivity {
             double tolerance = 1E-4;
             if (Math.abs(Math.floor(entry)- entry) < tolerance)
             {
-                Fraction fractionEntry = new Fraction(entry);
+                Fraction fractionEntry = new Fraction(entry, MatrixOperations.MAX_DENOMINATOR);
                 textView.setText(fractionEntry.toString());
             }
             else
@@ -155,14 +155,19 @@ public class DVS extends AppCompatActivity {
                 entries[i][j] = textView;
                 relativeLayout.addView(textView);
                 double entry = matrix.getEntry(i,j);
-                Fraction fractionEntry = new Fraction(entry);
-                Fraction fractionSquaredNorm = new Fraction(norm*norm);
-                if (entry == 0 || (entry == 1 && norm == 1)) {
-                    textView.setText(fractionEntry.toString());
-                }
-                else
-                {
-                    textView.setText(fractionEntry.toString() + "/(" + fractionSquaredNorm.toString() + ")^(1/2)" );
+
+                try {
+                    Fraction fractionEntry = new Fraction(entry, MatrixOperations.MAX_DENOMINATOR);
+                    Fraction fractionSquaredNorm = new Fraction(norm*norm);
+                    if (entry == 0 || (entry == 1 && norm == 1)) {
+                        textView.setText(fractionEntry.toString());
+                    }
+                    else
+                    {
+                        textView.setText(fractionEntry.toString() + "/(" + fractionSquaredNorm.toString() + ")^(1/2)" );
+                    }
+                } catch (FractionConversionException e) {
+                    textView.setText(Double.toString(entry));
                 }
 
 

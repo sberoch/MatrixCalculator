@@ -78,6 +78,7 @@ public class MatrixFragment extends Fragment{
             }
         }
 
+        entries[0][0].requestFocus();
         return entries;
 
         //Github test
@@ -107,7 +108,7 @@ public class MatrixFragment extends Fragment{
         try {
             editstr = catchDiv(editstr);
             result = parseDouble(editstr);
-            if (editstr.length() > 4){
+            if (editstr.length() > 10){
                 throw new IllegalArgumentException("Invalid value");
             }
         } catch (NumberFormatException e) {

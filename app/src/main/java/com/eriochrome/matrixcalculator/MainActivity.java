@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 double entry = matrix.getEntry(i,j);
-                Fraction fractionEntry = new Fraction(entry);
+                Fraction fractionEntry = new Fraction(entry, MatrixOperations.MAX_DENOMINATOR);
                 textView.setText(fractionEntry.toString());
 
                 relativeLayout.addView(textView);
