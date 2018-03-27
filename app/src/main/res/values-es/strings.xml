@@ -34,4 +34,5 @@
     <string name="singValues">Valores Singulares</string>
     <string name="Ur">U (reducida)</string>
     <string name="Vtr">Vt (reducida)</string>
+    <string name="square_root">\\u221A</string>
 </resources>

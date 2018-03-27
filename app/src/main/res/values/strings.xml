@@ -35,4 +35,5 @@
     <string name="singValues">Singular Values</string>
     <string name="Ur">U (reduced)</string>
     <string name="Vtr">Vt (reduced)</string>
+    <string name="square_root">\\u221A</string>
 </resources>
