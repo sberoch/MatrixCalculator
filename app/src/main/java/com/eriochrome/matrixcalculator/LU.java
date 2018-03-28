@@ -1,9 +1,8 @@
 package com.eriochrome.matrixcalculator;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,8 +53,8 @@ public class LU extends AppCompatActivity {
                 corchete5.setVisibility(View.VISIBLE);
                 corchete6.setVisibility(View.VISIBLE);
                 MainActivity main = new MainActivity();
-                main.createMatrixDinamically(L, lRelativeLayout, this, 35,15,8,10);
-                main.createMatrixDinamically(U, uRelativeLayout, this, 35,15,8,10);
+                main.createMatrixDinamically(L, lRelativeLayout, this, 55,35,14,14);
+                main.createMatrixDinamically(U, uRelativeLayout, this, 55,35,14,14);
             }
         } catch (SingularMatrixException e) {
             errorHandler.setText(getResources().getString(R.string.singularMatrix));

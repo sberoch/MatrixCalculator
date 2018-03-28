@@ -1,10 +1,9 @@
 package com.eriochrome.matrixcalculator;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -76,7 +75,7 @@ public class Eigenvalues extends AppCompatActivity
 
         int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 45, getResources().getDisplayMetrics());
         int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getResources().getDisplayMetrics());
-        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 40, getResources().getDisplayMetrics());
+        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 25, getResources().getDisplayMetrics());
 
         for (int i = 0; i < matrix.getColumnDimension(); i++) {
             TextView textView = new TextView(this);
