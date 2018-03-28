@@ -83,9 +83,9 @@ public class DVS extends AppCompatActivity {
         TextView[] textViews = new TextView[matrix.getColumnDimension()];
         DecimalFormat df = new DecimalFormat("###.##");
 
-        int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 80, getResources().getDisplayMetrics());
+        int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 70, getResources().getDisplayMetrics());
         int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getResources().getDisplayMetrics());
-        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30, getResources().getDisplayMetrics());
+        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 20, getResources().getDisplayMetrics());
 
         for (int i = 0; i < matrix.getColumnDimension(); i++) {
             TextView textView = new TextView(this);
@@ -131,7 +131,7 @@ public class DVS extends AppCompatActivity {
         int row = matrix.getRowDimension();
         TextView[][] entries = new TextView[row][col];
 
-        int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 80, getResources().getDisplayMetrics());
+        int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 70, getResources().getDisplayMetrics());
         int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getResources().getDisplayMetrics());
         int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics());
 
