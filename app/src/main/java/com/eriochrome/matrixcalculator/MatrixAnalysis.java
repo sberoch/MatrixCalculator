@@ -1,19 +1,18 @@
 package com.eriochrome.matrixcalculator;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.NonSquareMatrixException;
-import org.apache.commons.math3.linear.RRQRDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.SingularValueDecomposition;
 
@@ -22,6 +21,8 @@ import java.text.DecimalFormat;
 public class MatrixAnalysis extends AppCompatActivity {
 
     RelativeLayout relativeLayout;
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,10 @@ public class MatrixAnalysis extends AppCompatActivity {
             det_textView.setText(getResources().getString(R.string.notSquare));
         }
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
     }
@@ -87,6 +92,9 @@ public class MatrixAnalysis extends AppCompatActivity {
     public void onClick(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
         mp.start();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
         this.finish();
     }
 }

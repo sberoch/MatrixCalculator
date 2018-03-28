@@ -91,19 +91,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="150dp">
 
-                    <TextView
-                        android:id="@+id/corchete3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:text="["
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="100sp"
-                        android:visibility="invisible" />
-
                     <RelativeLayout
                         android:id="@+id/lRelativeLayout"
                         android:layout_width="wrap_content"
@@ -112,19 +99,6 @@
                         android:layout_weight="1">
 
                     </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/corchete4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:text="]"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="100sp"
-                        android:visibility="invisible" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -157,19 +131,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="150dp">
 
-                    <TextView
-                        android:id="@+id/corchete5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:text="["
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="100sp"
-                        android:visibility="invisible" />
-
                     <RelativeLayout
                         android:id="@+id/uRelativeLayout"
                         android:layout_width="wrap_content"
@@ -178,19 +139,6 @@
                         android:layout_weight="1">
 
                     </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/corchete6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:text="]"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="100sp"
-                        android:visibility="invisible" />
 
                 </LinearLayout>
             </LinearLayout>

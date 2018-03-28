@@ -10,6 +10,9 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.EigenDecomposition;
@@ -22,6 +25,8 @@ public class Eigenvalues extends AppCompatActivity
 
     RelativeLayout eigenvaluesRL;
     RelativeLayout eigenvectorsRL;
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -34,6 +39,14 @@ public class Eigenvalues extends AppCompatActivity
         eigenvaluesRL = findViewById(R.id.eigenvaluesRL);
         eigenvectorsRL = findViewById(R.id.eigenvectorsRL);
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
 
         try {
 
@@ -57,17 +70,6 @@ public class Eigenvalues extends AppCompatActivity
             errorHandler.setText(getResources().getString(R.string.notSquare));
         }
     }
-
-
-
-    public void onClick(View view)
-    {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
-        mp.start();
-        this.finish();
-    }
-
-
 
 
     public void createEigenvaluesVector(RealMatrix matrix, RelativeLayout relativeLayout) {
@@ -107,9 +109,9 @@ public class Eigenvalues extends AppCompatActivity
         int dim = eigenDecomposition.getD().getColumnDimension();
 
         int widthTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 40, getResources().getDisplayMetrics());
-        int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getResources().getDisplayMetrics());
+        int heightTextView = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 32, getResources().getDisplayMetrics());
         int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics());
-        int marginBetweenVectors = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 65, getResources().getDisplayMetrics());
+        int marginBetweenVectors = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 45, getResources().getDisplayMetrics());
         int heightNoDiago = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 60, getResources().getDisplayMetrics());
         int widthNoDiago = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 300, getResources().getDisplayMetrics());
 
@@ -179,6 +181,21 @@ public class Eigenvalues extends AppCompatActivity
             i++;
         }
     }
+
+
+
+
+
+    public void onClick(View view)
+    {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
+        mp.start();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+        this.finish();
+    }
+
 
 
 }

@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.fraction.FractionConversionException;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -23,6 +26,8 @@ public class DVS extends AppCompatActivity {
     RelativeLayout singularValuesRL;
     RelativeLayout uMatrixRL;
     RelativeLayout VtMatrixRL;
+
+    private InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -49,6 +54,11 @@ public class DVS extends AppCompatActivity {
         createValuesVector(Sigma, singularValuesRL);
         createVectorsDisplay(U, uMatrixRL);
         createVectorsDisplay(Vt, VtMatrixRL);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
 
@@ -56,6 +66,9 @@ public class DVS extends AppCompatActivity {
     public void onClick(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
         mp.start();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
         this.finish();
     }
 

@@ -1,13 +1,15 @@
 package com.eriochrome.matrixcalculator;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.LUDecomposition;
@@ -17,6 +19,7 @@ import org.apache.commons.math3.linear.SingularMatrixException;
 public class Inverse extends AppCompatActivity {
 
     RelativeLayout invRelativeLayout;
+    private InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,11 @@ public class Inverse extends AppCompatActivity {
             errorHandler.setText(getResources().getString(R.string.singularMatrix));
         }
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
     }
 
 
@@ -56,6 +64,9 @@ public class Inverse extends AppCompatActivity {
     public void onClick(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_touch);
         mp.start();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
         this.finish();
     }
 }
