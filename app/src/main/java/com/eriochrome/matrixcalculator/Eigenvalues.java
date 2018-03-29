@@ -40,13 +40,10 @@ public class Eigenvalues extends AppCompatActivity
         eigenvectorsRL = findViewById(R.id.eigenvectorsRL);
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-5220294257716774/8778214085");
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        }
 
         try {
 

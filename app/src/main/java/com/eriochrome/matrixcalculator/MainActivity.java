@@ -18,6 +18,8 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.MobileAds;
+
 import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.linear.RealMatrix;
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        MobileAds.initialize(this, "ca-app-pub-5220294257716774~7652554460");
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
                 WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
