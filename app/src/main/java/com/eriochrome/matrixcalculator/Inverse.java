@@ -1,6 +1,7 @@
 package com.eriochrome.matrixcalculator;
 
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,8 +26,24 @@ public class Inverse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inverse);
         Bundle b = getIntent().getExtras();
+        int cols = b.getInt("Cols");
+        int rows = b.getInt("Rows");
 
-        double[][] mtx = (double[][])b.getSerializable("Matrix");
+        double[][] mtx;
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            mtx = (double[][])b.getSerializable("Matrix");
+        }
+        else
+        {
+            Object[] objmtx = (Object[]) b.getSerializable("Matrix");
+            mtx = new double[rows][cols];
+            for (int i = 0; i < rows; i++)
+            {
+                mtx[i] = (double[]) objmtx[i];
+            }
+        }
+
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
         invRelativeLayout = (RelativeLayout)findViewById(R.id.invRelativeLayout);
 

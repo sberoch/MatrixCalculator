@@ -35,8 +35,23 @@ public class DVS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dvs);
         Bundle b = getIntent().getExtras();
+        int cols = b.getInt("Cols");
+        int rows = b.getInt("Rows");
 
-        double[][] mtx = (double[][])b.getSerializable("Matrix");
+        double[][] mtx;
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            mtx = (double[][])b.getSerializable("Matrix");
+        }
+        else
+        {
+            Object[] objmtx = (Object[]) b.getSerializable("Matrix");
+            mtx = new double[rows][cols];
+            for (int i = 0; i < rows; i++)
+            {
+                mtx[i] = (double[]) objmtx[i];
+            }
+        }
         RealMatrix matrix = new Array2DRowRealMatrix(mtx);
         singularValuesRL = findViewById(R.id.singularValuesRL);
         uMatrixRL = findViewById(R.id.uMatrixRL);

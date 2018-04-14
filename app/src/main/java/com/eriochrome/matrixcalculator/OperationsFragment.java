@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
 
 public class OperationsFragment extends Fragment {
 
@@ -48,10 +49,13 @@ public class OperationsFragment extends Fragment {
                 mp.start();
                 MatrixFragment mtxFrg = (MatrixFragment) getFragmentManager().findFragmentById(R.id.matrix_fragment);
                 double[][] mtx = mtxFrg.createMatrixFromFragment();
+                RealMatrix matrix = new Array2DRowRealMatrix(mtx);
 
                 Intent i = new Intent(getActivity(), Eigenvalues.class);
                 Bundle b = new Bundle();
                 b.putSerializable("Matrix", mtx);
+                b.putInt("Rows", matrix.getRowDimension());
+                b.putInt("Cols", matrix.getColumnDimension());
                 i.putExtras(b);
                 startActivity(i);
 
@@ -66,10 +70,14 @@ public class OperationsFragment extends Fragment {
                 mp.start();
                 MatrixFragment mtxFrg = (MatrixFragment) getFragmentManager().findFragmentById(R.id.matrix_fragment);
                 double[][] mtx = mtxFrg.createMatrixFromFragment();
+                RealMatrix matrix = new Array2DRowRealMatrix(mtx);
+
 
                 Intent i = new Intent(getActivity(), Inverse.class);
                 Bundle b = new Bundle();
                 b.putSerializable("Matrix", mtx);
+                b.putInt("Rows", matrix.getRowDimension());
+                b.putInt("Cols", matrix.getColumnDimension());
                 i.putExtras(b);
                 startActivity(i);
             }
@@ -83,10 +91,13 @@ public class OperationsFragment extends Fragment {
                 mp.start();
                 MatrixFragment mtxFrg = (MatrixFragment) getFragmentManager().findFragmentById(R.id.matrix_fragment);
                 double[][] mtx = mtxFrg.createMatrixFromFragment();
+                RealMatrix matrix = new Array2DRowRealMatrix(mtx);
 
                 Intent i = new Intent(getActivity(), MatrixAnalysis.class);
                 Bundle b = new Bundle();
                 b.putSerializable("Matrix", mtx);
+                b.putInt("Rows", matrix.getRowDimension());
+                b.putInt("Cols", matrix.getColumnDimension());
                 i.putExtras(b);
                 startActivity(i);
             }
@@ -100,10 +111,13 @@ public class OperationsFragment extends Fragment {
                 mp.start();
                 MatrixFragment mtxFrg = (MatrixFragment) getFragmentManager().findFragmentById(R.id.matrix_fragment);
                 double[][] mtx = mtxFrg.createMatrixFromFragment();
+                RealMatrix matrix = new Array2DRowRealMatrix(mtx);
 
                 Intent i = new Intent(getActivity(), DVS.class);
                 Bundle b = new Bundle();
                 b.putSerializable("Matrix", mtx);
+                b.putInt("Rows", matrix.getRowDimension());
+                b.putInt("Cols", matrix.getColumnDimension());
                 i.putExtras(b);
                 startActivity(i);
             }
@@ -117,10 +131,13 @@ public class OperationsFragment extends Fragment {
                 mp.start();
                 MatrixFragment mtxFrg = (MatrixFragment) getFragmentManager().findFragmentById(R.id.matrix_fragment);
                 double[][] mtx = mtxFrg.createMatrixFromFragment();
+                RealMatrix matrix = new Array2DRowRealMatrix(mtx);
 
                 Intent i = new Intent(getActivity(), LU.class);
                 Bundle b = new Bundle();
                 b.putSerializable("Matrix", mtx);
+                b.putInt("Rows", matrix.getRowDimension());
+                b.putInt("Cols", matrix.getColumnDimension());
                 i.putExtras(b);
                 startActivity(i);
             }
